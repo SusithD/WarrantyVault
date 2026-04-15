@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Top-level main app shell with a custom 5-item bottom nav matching the Figma.
+/// Top-level main app shell with a custom 5-item bottom nav.
 /// The middle "Add" slot is a floating circular button that presents the Add Warranty sheet.
 struct MainTabView: View {
     @Environment(AppStore.self) private var store
@@ -12,6 +12,7 @@ struct MainTabView: View {
 
         ZStack(alignment: .bottom) {
             GradientBackground()
+                .ignoresSafeArea()
 
             Group {
                 switch store.selectedTab {
@@ -20,21 +21,24 @@ struct MainTabView: View {
                 case .claims:
                     NavigationStack { ClaimsListView(presentingFileClaim: $presentingFileClaim) }
                 case .add:
-                    EmptyView() // handled via sheet
+                    EmptyView()
                 case .household:
                     HouseholdHubView()
                 case .profile:
                     NavigationStack { ProfileView() }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.bottom, 96)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                Color.clear.frame(height: 72)
+            }
 
             BottomNavBar(
                 selected: $store.selectedTab,
                 onAddTapped: { presentingAdd = true }
             )
         }
+        .ignoresSafeArea(edges: .bottom)
         .sheet(isPresented: $presentingAdd) {
             NavigationStack { AddWarrantyView() }
                 .presentationDetents([.large])
@@ -54,44 +58,58 @@ struct BottomNavBar: View {
     @Binding var selected: MainTab
     var onAddTapped: () -> Void
 
+    private let addSize: CGFloat = 56
+
     var body: some View {
-        HStack(spacing: 0) {
-            navItem(.dashboard, symbol: "square.grid.2x2.fill",        title: "Home")
-            navItem(.claims,    symbol: "doc.text.magnifyingglass",    title: "Claims")
+        ZStack(alignment: .top) {
+            // Tab items row
+            HStack(spacing: 0) {
+                navItem(.dashboard, symbol: "square.grid.2x2.fill",    title: "Home")
+                navItem(.claims,    symbol: "doc.text.magnifyingglass", title: "Claims")
+
+                // Spacer for the floating button
+                Color.clear.frame(width: addSize + 16)
+
+                navItem(.household, symbol: "person.2.fill",           title: "Family")
+                navItem(.profile,   symbol: "person.crop.circle.fill", title: "Profile")
+            }
+            .padding(.horizontal, 8)
+            .padding(.top, 14)
+            .padding(.bottom, 34) // accounts for home indicator safe area
+            .background(
+                UnevenRoundedRectangle(
+                    topLeadingRadius: 24,
+                    bottomLeadingRadius: 0,
+                    bottomTrailingRadius: 0,
+                    topTrailingRadius: 24
+                )
+                .fill(.ultraThinMaterial)
+                .shadow(color: .black.opacity(0.06), radius: 12, y: -4)
+            )
+
+            // Floating add button — anchored above the bar
             addButton
-            navItem(.household, symbol: "person.2.fill",               title: "Family")
-            navItem(.profile,   symbol: "person.crop.circle.fill",     title: "Profile")
+                .offset(y: -(addSize / 2))
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 10)
-        .padding(.bottom, 22)
-        .background(
-            RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .fill(Color.white)
-                .shadow(color: .black.opacity(0.08), radius: 20, x: 0, y: 8)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(AppColors.border, lineWidth: 1)
-        )
-        .padding(.horizontal, 16)
-        .padding(.bottom, 10)
     }
 
     @ViewBuilder
     private func navItem(_ tab: MainTab, symbol: String, title: String) -> some View {
+        let isSelected = selected == tab
+
         Button {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.85)) {
                 selected = tab
             }
         } label: {
-            VStack(spacing: 4) {
+            VStack(spacing: 5) {
                 Image(systemName: symbol)
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(.system(size: 20, weight: isSelected ? .bold : .medium))
+                    .symbolEffect(.bounce, value: isSelected)
                 Text(title)
-                    .font(.system(size: 10, weight: .medium))
+                    .font(.system(size: 11, weight: .medium))
             }
-            .foregroundStyle(selected == tab ? AppColors.brandBlue : AppColors.textSecondary)
+            .foregroundStyle(isSelected ? AppColors.brandBlue : AppColors.textSecondary)
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.plain)
@@ -103,20 +121,19 @@ struct BottomNavBar: View {
                 Circle()
                     .fill(
                         LinearGradient(
-                            colors: [AppColors.brandBlue, AppColors.brandBlue.opacity(0.85)],
+                            colors: [AppColors.brandBlue, Color(red: 0.02, green: 0.40, blue: 0.90)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
-                    .frame(width: 54, height: 54)
-                    .shadow(color: AppColors.brandBlue.opacity(0.35), radius: 12, y: 8)
+                    .frame(width: addSize, height: addSize)
+                    .shadow(color: AppColors.brandBlue.opacity(0.30), radius: 10, y: 6)
+
                 Image(systemName: "plus")
-                    .font(.system(size: 22, weight: .bold))
+                    .font(.system(size: 24, weight: .bold))
                     .foregroundStyle(.white)
             }
         }
         .buttonStyle(.plain)
-        .offset(y: -14)
-        .frame(maxWidth: .infinity)
     }
 }
