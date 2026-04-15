@@ -11,11 +11,13 @@ import SwiftUI
 @main
 struct WarrantyVaultApp: App {
     @State private var coordinator = AppCoordinator()
+    @State private var store       = AppStore()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(coordinator)
+                .environment(store)
                 .preferredColorScheme(.light)
         }
     }
@@ -40,7 +42,7 @@ struct RootView: View {
                     .transition(.opacity)
 
             case .mainApp:
-                MainAppPlaceholderView()
+                MainTabView()
                     .transition(.opacity)
             }
         }
