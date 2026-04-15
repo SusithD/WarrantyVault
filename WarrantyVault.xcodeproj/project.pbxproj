@@ -8,19 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		080D17A83182CD33DDCEFEE7 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5025D03E8BC208A38D405D /* AppCoordinator.swift */; };
+		9E60F864F441CF65B83D818A /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51D5D193ADA4627FFCE621E /* AppStore.swift */; };
 		AA75D484B1D30B2D64C55FD3 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08084EE98332C5F6E69FC871 /* AppColors.swift */; };
 		7194B7A38BF364F1D5147D88 /* AppTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC031472AAA1EC74D75E279 /* AppTypography.swift */; };
 		A32FEE96528451E3AA03DE1B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505FC6938F78F58D5111BF2 /* GlassCard.swift */; };
 		CDA9807F4496729A32FECC42 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB60067025EEE78B7AF22FC /* GradientBackground.swift */; };
 		C91C82DFF26C94B98B65E584 /* PageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887BC54B61BCA96E23839BA0 /* PageIndicator.swift */; };
 		187BDFAA22AEE194740A56C7 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7CFCF6984A6BD29D9B7D5 /* PrimaryButton.swift */; };
+		75DED1E49FD3556399FB06DE /* AddWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CE25BDF9BBE41D2254BBD8 /* AddWarrantyView.swift */; };
 		190D98B557B268DEF1B6906F /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBB6488DBB39D2383AE76B /* AuthenticationView.swift */; };
 		9F51A559E62A9547D99E16A8 /* MainAppPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095254A4332EF34AFA688196 /* MainAppPlaceholderView.swift */; };
+		6A50B6D38BEE6D33DCC6A4D6 /* ClaimChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A47CEA66A2F6C68CAC6243 /* ClaimChatView.swift */; };
+		27B07B4BB2078A4D5FD9A421 /* ClaimsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08336CB9A2B2301A0574C44B /* ClaimsListView.swift */; };
+		B5418D5D20B56D2DBE53B31B /* ClaimStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9BB87D4EF8DC3D04C48C4 /* ClaimStatusView.swift */; };
+		FFF0AB086A7831F262AA6A3B /* FileClaimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C44CDB6A511F95BBEE288B2 /* FileClaimView.swift */; };
+		C3C5A621ED993637E797C407 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201496A8EB94AF1DA1AA1E02 /* DashboardView.swift */; };
+		2131A1400F5B9770FF75EA63 /* HouseholdCreateJoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F822488B1123A47CDD3358 /* HouseholdCreateJoinView.swift */; };
+		727A698B7AB2DACC8EA049E2 /* HouseholdHubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80902AB9904C5C9462ECF0F9 /* HouseholdHubView.swift */; };
+		B4535682A8FCA815384A59D1 /* InviteMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AC6A7293978C458ABEBF4D /* InviteMemberView.swift */; };
+		B31F0C9483A91853F7C8F79B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8939F9C4055C8C84F2C1B3E /* MainTabView.swift */; };
 		5E288C0AE3355E56A76AEA44 /* OnboardingContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A6FD4962999E1ABDA2D0E6 /* OnboardingContainerView.swift */; };
 		CFAE7D880189922883935864 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902DD5128FE982DF03E147BF /* OnboardingData.swift */; };
 		FF3614C9969C655B360882AC /* OnboardingIllustrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B84FE987CFD544215D02529 /* OnboardingIllustrationView.swift */; };
 		CC7BA39AEEEF90C68C2B3F95 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14302FE240598CD2938ADE56 /* OnboardingPageView.swift */; };
+		5CEABA0D97701AF4125EF0F5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABDF9F4D19DFE43FB93D3D2 /* ProfileView.swift */; };
 		FE18840EEFE27BFEED02B3F0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A574EE65BEC3076702D270F /* SplashView.swift */; };
+		120368A61C1AD96083CC3C51 /* WarrantyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62449098787AC125A5B7092 /* WarrantyDetailView.swift */; };
+		61DF2F924F9671B11D5FF995 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCF47C94865CCCA1C7C67D /* Claim.swift */; };
+		0479360A5A42B9DF4D703D7E /* Household.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEABCA8C5DFDBD2A5000D4C1 /* Household.swift */; };
+		D70E031C9280F1D196142A9A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84587C2D80F1CAF473030EBD /* MockData.swift */; };
+		D240F337153C0F769B7087AF /* Warranty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA25800BB215D55C4CCF1857 /* Warranty.swift */; };
 		09A4B4018EE19DB9F182FB10 /* WarrantyVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855521D3CECE57610385E92 /* WarrantyVaultApp.swift */; };
 		9C4613ADC9B57FC436F0057B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45634CEEE3EB39F8AD6FF61 /* Assets.xcassets */; };
 		8BE3FD3DC3C460B44F100F2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 757D7FD6E847403B72ECD838 /* Preview Assets.xcassets */; };
@@ -29,22 +46,39 @@
 /* Begin PBXFileReference section */
 		58FCACEE6471C6F0EA7A8575 /* WarrantyVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarrantyVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5025D03E8BC208A38D405D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		B51D5D193ADA4627FFCE621E /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		08084EE98332C5F6E69FC871 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		BBC031472AAA1EC74D75E279 /* AppTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypography.swift; sourceTree = "<group>"; };
 		E505FC6938F78F58D5111BF2 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		AEB60067025EEE78B7AF22FC /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
 		887BC54B61BCA96E23839BA0 /* PageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicator.swift; sourceTree = "<group>"; };
 		2AA7CFCF6984A6BD29D9B7D5 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		E0CE25BDF9BBE41D2254BBD8 /* AddWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWarrantyView.swift; sourceTree = "<group>"; };
 		42DBB6488DBB39D2383AE76B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		095254A4332EF34AFA688196 /* MainAppPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppPlaceholderView.swift; sourceTree = "<group>"; };
+		95A47CEA66A2F6C68CAC6243 /* ClaimChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimChatView.swift; sourceTree = "<group>"; };
+		08336CB9A2B2301A0574C44B /* ClaimsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimsListView.swift; sourceTree = "<group>"; };
+		F2D9BB87D4EF8DC3D04C48C4 /* ClaimStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStatusView.swift; sourceTree = "<group>"; };
+		2C44CDB6A511F95BBEE288B2 /* FileClaimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileClaimView.swift; sourceTree = "<group>"; };
+		201496A8EB94AF1DA1AA1E02 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		E0F822488B1123A47CDD3358 /* HouseholdCreateJoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdCreateJoinView.swift; sourceTree = "<group>"; };
+		80902AB9904C5C9462ECF0F9 /* HouseholdHubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseholdHubView.swift; sourceTree = "<group>"; };
+		96AC6A7293978C458ABEBF4D /* InviteMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberView.swift; sourceTree = "<group>"; };
+		B8939F9C4055C8C84F2C1B3E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		79A6FD4962999E1ABDA2D0E6 /* OnboardingContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerView.swift; sourceTree = "<group>"; };
 		902DD5128FE982DF03E147BF /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		6B84FE987CFD544215D02529 /* OnboardingIllustrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIllustrationView.swift; sourceTree = "<group>"; };
 		14302FE240598CD2938ADE56 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		DABDF9F4D19DFE43FB93D3D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0A574EE65BEC3076702D270F /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		A62449098787AC125A5B7092 /* WarrantyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyDetailView.swift; sourceTree = "<group>"; };
+		0BFCF47C94865CCCA1C7C67D /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
+		EEABCA8C5DFDBD2A5000D4C1 /* Household.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Household.swift; sourceTree = "<group>"; };
+		84587C2D80F1CAF473030EBD /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		DA25800BB215D55C4CCF1857 /* Warranty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warranty.swift; sourceTree = "<group>"; };
 		2855521D3CECE57610385E92 /* WarrantyVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyVaultApp.swift; sourceTree = "<group>"; };
 		B45634CEEE3EB39F8AD6FF61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		757D7FD6E847403B72ECD838 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Preview Assets.xcassets; sourceTree = "<group>"; };
+		757D7FD6E847403B72ECD838 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +114,7 @@
 				0D008C1A21B7BC2A24E7FF04 /* App */,
 				09705805699FF62331F5009C /* DesignSystem */,
 				66125CDA0D2A8E79D916935C /* Features */,
+				C1AFDCBE9747978E1E0A00B6 /* Models */,
 				66D135FABC7EEA8D46FC2B53 /* Preview Content */,
 				B45634CEEE3EB39F8AD6FF61 /* Assets.xcassets */,
 				2855521D3CECE57610385E92 /* WarrantyVaultApp.swift */,
@@ -91,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				6B5025D03E8BC208A38D405D /* AppCoordinator.swift */,
+				B51D5D193ADA4627FFCE621E /* AppStore.swift */,
 			);
 			path = "App";
 			sourceTree = "<group>";
@@ -111,11 +147,26 @@
 		66125CDA0D2A8E79D916935C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F1FA1D03BF65F7F562DBCCDC /* AddWarranty */,
 				A390140E3475AF17E98DD38C /* Authentication */,
+				5BA652A257FE4F6EED9E0AF8 /* Claim */,
+				00D90C097BE66951372CDF9D /* Dashboard */,
+				A5895810D17A573D406829C2 /* Household */,
+				7ECBA18BD5E708B24E2CA851 /* MainTab */,
 				5F7E28E9D8CF4089873EB0F1 /* Onboarding */,
+				090929A5E75239A742BB34B1 /* Profile */,
 				817A4530C59ECDC10D9F3C29 /* Splash */,
+				E9292D3E0216AF91F90DA87A /* WarrantyDetail */,
 			);
 			path = "Features";
+			sourceTree = "<group>";
+		};
+		F1FA1D03BF65F7F562DBCCDC /* AddWarranty */ = {
+			isa = PBXGroup;
+			children = (
+				E0CE25BDF9BBE41D2254BBD8 /* AddWarrantyView.swift */,
+			);
+			path = "AddWarranty";
 			sourceTree = "<group>";
 		};
 		A390140E3475AF17E98DD38C /* Authentication */ = {
@@ -125,6 +176,43 @@
 				095254A4332EF34AFA688196 /* MainAppPlaceholderView.swift */,
 			);
 			path = "Authentication";
+			sourceTree = "<group>";
+		};
+		5BA652A257FE4F6EED9E0AF8 /* Claim */ = {
+			isa = PBXGroup;
+			children = (
+				95A47CEA66A2F6C68CAC6243 /* ClaimChatView.swift */,
+				08336CB9A2B2301A0574C44B /* ClaimsListView.swift */,
+				F2D9BB87D4EF8DC3D04C48C4 /* ClaimStatusView.swift */,
+				2C44CDB6A511F95BBEE288B2 /* FileClaimView.swift */,
+			);
+			path = "Claim";
+			sourceTree = "<group>";
+		};
+		00D90C097BE66951372CDF9D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				201496A8EB94AF1DA1AA1E02 /* DashboardView.swift */,
+			);
+			path = "Dashboard";
+			sourceTree = "<group>";
+		};
+		A5895810D17A573D406829C2 /* Household */ = {
+			isa = PBXGroup;
+			children = (
+				E0F822488B1123A47CDD3358 /* HouseholdCreateJoinView.swift */,
+				80902AB9904C5C9462ECF0F9 /* HouseholdHubView.swift */,
+				96AC6A7293978C458ABEBF4D /* InviteMemberView.swift */,
+			);
+			path = "Household";
+			sourceTree = "<group>";
+		};
+		7ECBA18BD5E708B24E2CA851 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				B8939F9C4055C8C84F2C1B3E /* MainTabView.swift */,
+			);
+			path = "MainTab";
 			sourceTree = "<group>";
 		};
 		5F7E28E9D8CF4089873EB0F1 /* Onboarding */ = {
@@ -138,12 +226,39 @@
 			path = "Onboarding";
 			sourceTree = "<group>";
 		};
+		090929A5E75239A742BB34B1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DABDF9F4D19DFE43FB93D3D2 /* ProfileView.swift */,
+			);
+			path = "Profile";
+			sourceTree = "<group>";
+		};
 		817A4530C59ECDC10D9F3C29 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
 				0A574EE65BEC3076702D270F /* SplashView.swift */,
 			);
 			path = "Splash";
+			sourceTree = "<group>";
+		};
+		E9292D3E0216AF91F90DA87A /* WarrantyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A62449098787AC125A5B7092 /* WarrantyDetailView.swift */,
+			);
+			path = "WarrantyDetail";
+			sourceTree = "<group>";
+		};
+		C1AFDCBE9747978E1E0A00B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0BFCF47C94865CCCA1C7C67D /* Claim.swift */,
+				EEABCA8C5DFDBD2A5000D4C1 /* Household.swift */,
+				84587C2D80F1CAF473030EBD /* MockData.swift */,
+				DA25800BB215D55C4CCF1857 /* Warranty.swift */,
+			);
+			path = "Models";
 			sourceTree = "<group>";
 		};
 		66D135FABC7EEA8D46FC2B53 /* Preview Content */ = {
@@ -225,19 +340,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				080D17A83182CD33DDCEFEE7 /* AppCoordinator.swift in Sources */,
+				9E60F864F441CF65B83D818A /* AppStore.swift in Sources */,
 				AA75D484B1D30B2D64C55FD3 /* AppColors.swift in Sources */,
 				7194B7A38BF364F1D5147D88 /* AppTypography.swift in Sources */,
 				A32FEE96528451E3AA03DE1B /* GlassCard.swift in Sources */,
 				CDA9807F4496729A32FECC42 /* GradientBackground.swift in Sources */,
 				C91C82DFF26C94B98B65E584 /* PageIndicator.swift in Sources */,
 				187BDFAA22AEE194740A56C7 /* PrimaryButton.swift in Sources */,
+				75DED1E49FD3556399FB06DE /* AddWarrantyView.swift in Sources */,
 				190D98B557B268DEF1B6906F /* AuthenticationView.swift in Sources */,
 				9F51A559E62A9547D99E16A8 /* MainAppPlaceholderView.swift in Sources */,
+				6A50B6D38BEE6D33DCC6A4D6 /* ClaimChatView.swift in Sources */,
+				27B07B4BB2078A4D5FD9A421 /* ClaimsListView.swift in Sources */,
+				B5418D5D20B56D2DBE53B31B /* ClaimStatusView.swift in Sources */,
+				FFF0AB086A7831F262AA6A3B /* FileClaimView.swift in Sources */,
+				C3C5A621ED993637E797C407 /* DashboardView.swift in Sources */,
+				2131A1400F5B9770FF75EA63 /* HouseholdCreateJoinView.swift in Sources */,
+				727A698B7AB2DACC8EA049E2 /* HouseholdHubView.swift in Sources */,
+				B4535682A8FCA815384A59D1 /* InviteMemberView.swift in Sources */,
+				B31F0C9483A91853F7C8F79B /* MainTabView.swift in Sources */,
 				5E288C0AE3355E56A76AEA44 /* OnboardingContainerView.swift in Sources */,
 				CFAE7D880189922883935864 /* OnboardingData.swift in Sources */,
 				FF3614C9969C655B360882AC /* OnboardingIllustrationView.swift in Sources */,
 				CC7BA39AEEEF90C68C2B3F95 /* OnboardingPageView.swift in Sources */,
+				5CEABA0D97701AF4125EF0F5 /* ProfileView.swift in Sources */,
 				FE18840EEFE27BFEED02B3F0 /* SplashView.swift in Sources */,
+				120368A61C1AD96083CC3C51 /* WarrantyDetailView.swift in Sources */,
+				61DF2F924F9671B11D5FF995 /* Claim.swift in Sources */,
+				0479360A5A42B9DF4D703D7E /* Household.swift in Sources */,
+				D70E031C9280F1D196142A9A /* MockData.swift in Sources */,
+				D240F337153C0F769B7087AF /* Warranty.swift in Sources */,
 				09A4B4018EE19DB9F182FB10 /* WarrantyVaultApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
