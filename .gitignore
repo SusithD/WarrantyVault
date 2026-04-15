@@ -1,0 +1,31 @@
+# Xcode user-specific data
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+
+# Xcode build artifacts
+build/
+DerivedData/
+*.moved-aside
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode workspace settings (local, not shared)
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+# CocoaPods (if used later)
+Pods/
+
+# macOS system files
+.DS_Store
+*.swp
+*~
+
+# Code generation / helper scripts
+generate_pbxproj.py
