@@ -67,12 +67,37 @@ WarrantyVault/
 └── WarrantyVaultApp.swift
 ```
 
-## Next steps
-The `.mainApp` stage currently shows `MainAppPlaceholderView`. Replace it with the Dashboard screen to continue implementing the flow:
-- Dashboard (Warranty list)
-- Warranty Detail
-- Add / Edit Warranty
-- Claim — File a Claim / Status / Chat
-- Household — Create / Members / Activity
+## Main app flow (now wired up)
+After the entry flow, `.mainApp` routes into `MainTabView`, a custom 5-tab shell (Home · Claims · Add · Family · Profile) with a floating blue Add button.
 
-All screens should reuse the `DesignSystem/` components to stay visually consistent with the Figma source.
+### Core screens
+- **Dashboard** — warranty list with search, category chips, status summary tiles.
+- **Warranty Detail** — coverage progress, timeline dates, receipt card, File Claim / Edit actions, delete confirmation.
+- **Add / Edit Warranty** — category picker, date pickers, price, retailer, serial, notes, receipt toggle.
+
+### Claim feature
+- **Claims list** — all filed claims with status chips and updated-at labels.
+- **File a Claim** — item picker, issue type grid, summary, description, photo attachments, receipt confirmation.
+- **Status Timeline** — per-claim timeline with done/pending indicators, chat entry point.
+- **Chat with Support** — bubble chat UI with composer, agent header, online status.
+
+### Household feature
+- **Create / Join** — onboarding for first-time users (segmented Create vs Join with invite code).
+- **Household Hub** — stats header (members / items / open claims), Members and Activity segments.
+- **Member Management** — roles, per-member menu (change role, remove), invite button.
+- **Invite Member** — shareable invite code + email invite with role selection.
+- **Activity Feed** — actor avatars and kind tags (added, updated, claimed, invited, expiring soon).
+
+### Profile
+- Account card, notifications and Face ID toggles, help / feedback / terms rows, Sign out (returns to auth stage).
+
+## State
+`AppStore` (`@Observable`) is the in-memory source of truth, seeded from `MockData`. Mutations live on the store:
+- `addWarranty`, `updateWarranty`, `deleteWarranty`
+- `addClaim`, `appendMessage`
+- `addMember`, `removeMember`, `updateMemberRole`
+
+Swap this for persistence (SwiftData / CoreData / API) later without touching views.
+
+## Sample data
+See `Models/MockData.swift` for 7 warranties, 3 claims, a 5-message chat, a 4-member household, and 5 activity entries.
