@@ -33,4 +33,8 @@ final class AppCoordinator {
     func authenticated() {
         stage = .mainApp
     }
+
+    func signOut() {
+        stage = .authentication
+    }
 }
