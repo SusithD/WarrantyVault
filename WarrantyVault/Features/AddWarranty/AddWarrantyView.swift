@@ -1,0 +1,231 @@
+import SwiftUI
+
+struct AddWarrantyView: View {
+    @Environment(AppStore.self) private var store
+    @Environment(\.dismiss) private var dismiss
+
+    /// Pass a warranty to edit it; nil creates a new one.
+    let editing: Warranty?
+
+    @State private var productName: String
+    @State private var brand: String
+    @State private var category: WarrantyCategory
+    @State private var retailer: String
+    @State private var serial: String
+    @State private var notes: String
+    @State private var priceText: String
+    @State private var purchaseDate: Date
+    @State private var expiryDate: Date
+    @State private var receiptAttached: Bool
+
+    init(editing: Warranty? = nil) {
+        self.editing = editing
+        _productName   = State(initialValue: editing?.productName ?? "")
+        _brand         = State(initialValue: editing?.brand ?? "")
+        _category      = State(initialValue: editing?.category ?? .electronics)
+        _retailer      = State(initialValue: editing?.retailer ?? "")
+        _serial        = State(initialValue: editing?.serialNumber ?? "")
+        _notes         = State(initialValue: editing?.notes ?? "")
+        _priceText     = State(initialValue: editing.map { String(format: "%.2f", $0.price) } ?? "")
+        _purchaseDate  = State(initialValue: editing?.purchaseDate ?? Date())
+        _expiryDate    = State(initialValue: editing?.expiryDate ?? Calendar.current.date(byAdding: .year, value: 1, to: Date()) ?? Date())
+        _receiptAttached = State(initialValue: editing?.receiptAttached ?? false)
+    }
+
+    var body: some View {
+        ZStack {
+            GradientBackground()
+            ScrollView {
+                VStack(spacing: 16) {
+                    productCard
+                    categoryCard
+                    datesCard
+                    purchaseDetailsCard
+                    receiptToggle
+                    notesField
+                    savingButton
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
+            }
+        }
+        .navigationTitle(editing == nil ? "Add Warranty" : "Edit Warranty")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel") { dismiss() }
+                    .foregroundStyle(AppColors.textSecondary)
+            }
+        }
+    }
+
+    // MARK: Form cards
+
+    private var productCard: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Product".uppercased()).overlineStyle()
+                LabeledTextField(label: "Product name", text: $productName, placeholder: "e.g. Samsung QN90C 65\"")
+                LabeledTextField(label: "Brand", text: $brand, placeholder: "e.g. Samsung")
+                LabeledTextField(label: "Serial number", text: $serial, placeholder: "Optional")
+            }
+        }
+    }
+
+    private var categoryCard: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Category".uppercased()).overlineStyle()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(WarrantyCategory.allCases) { cat in
+                            Button {
+                                category = cat
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: cat.symbolName).font(.system(size: 12, weight: .bold))
+                                    Text(cat.rawValue).font(.system(size: 13, weight: .semibold))
+                                }
+                                .foregroundStyle(category == cat ? .white : AppColors.textPrimary)
+                                .padding(.horizontal, 14).padding(.vertical, 8)
+                                .background(Capsule().fill(category == cat ? cat.tint : Color.white))
+                                .overlay(Capsule().stroke(category == cat ? .clear : AppColors.border, lineWidth: 1))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private var datesCard: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Coverage".uppercased()).overlineStyle()
+                DatePicker("Purchase date", selection: $purchaseDate, displayedComponents: .date)
+                DatePicker("Expiry date",   selection: $expiryDate,   displayedComponents: .date)
+            }
+            .tint(AppColors.brandBlue)
+            .font(.system(size: 14, weight: .medium))
+            .foregroundStyle(AppColors.textPrimary)
+        }
+    }
+
+    private var purchaseDetailsCard: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Purchase".uppercased()).overlineStyle()
+                LabeledTextField(label: "Retailer", text: $retailer, placeholder: "e.g. Best Buy")
+                LabeledTextField(label: "Price (USD)", text: $priceText, placeholder: "0.00", keyboard: .decimalPad)
+            }
+        }
+    }
+
+    private var receiptToggle: some View {
+        GlassCard {
+            Toggle(isOn: $receiptAttached) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Receipt attached")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(AppColors.textPrimary)
+                    Text("Helps speed up future claims.")
+                        .font(.system(size: 12))
+                        .foregroundStyle(AppColors.textSecondary)
+                }
+            }
+            .tint(AppColors.brandBlue)
+        }
+    }
+
+    private var notesField: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Notes".uppercased()).overlineStyle()
+                TextEditor(text: $notes)
+                    .font(.system(size: 14))
+                    .frame(minHeight: 80)
+                    .scrollContentBackground(.hidden)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                            .fill(AppColors.surfaceMuted.opacity(0.4))
+                    )
+            }
+        }
+    }
+
+    private var savingButton: some View {
+        PrimaryButton(
+            title: editing == nil ? "Save Warranty" : "Save Changes",
+            icon: "checkmark",
+            isEnabled: !productName.trimmingCharacters(in: .whitespaces).isEmpty
+        ) {
+            save()
+        }
+    }
+
+    private func save() {
+        let price = Double(priceText.replacingOccurrences(of: ",", with: ".")) ?? 0
+        if let old = editing {
+            var updated = old
+            updated.productName = productName
+            updated.brand = brand
+            updated.category = category
+            updated.retailer = retailer
+            updated.serialNumber = serial
+            updated.notes = notes
+            updated.price = price
+            updated.purchaseDate = purchaseDate
+            updated.expiryDate = expiryDate
+            updated.receiptAttached = receiptAttached
+            store.updateWarranty(updated)
+        } else {
+            let w = Warranty(
+                productName: productName,
+                brand: brand,
+                category: category,
+                purchaseDate: purchaseDate,
+                expiryDate: expiryDate,
+                retailer: retailer,
+                price: price,
+                serialNumber: serial,
+                notes: notes,
+                receiptAttached: receiptAttached
+            )
+            store.addWarranty(w)
+        }
+        dismiss()
+    }
+}
+
+// MARK: - Labeled text field
+
+struct LabeledTextField: View {
+    let label: String
+    @Binding var text: String
+    var placeholder: String = ""
+    var keyboard: UIKeyboardType = .default
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(label.uppercased()).overlineStyle()
+            TextField(placeholder, text: $text)
+                .font(.system(size: 15))
+                .keyboardType(keyboard)
+                .padding(.horizontal, 14).padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(Color.white)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .stroke(AppColors.border, lineWidth: 1)
+                )
+        }
+    }
+}
+
+#Preview {
+    NavigationStack { AddWarrantyView() }
+        .environment(AppStore())
+}
