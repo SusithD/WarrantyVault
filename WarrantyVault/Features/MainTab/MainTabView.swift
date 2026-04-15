@@ -1,7 +1,5 @@
 import SwiftUI
 
-/// Top-level main app shell with a custom 5-item bottom nav.
-/// The middle "Add" slot is a floating circular button that presents the Add Warranty sheet.
 struct MainTabView: View {
     @Environment(AppStore.self) private var store
     @State private var presentingAdd = false
@@ -10,35 +8,33 @@ struct MainTabView: View {
     var body: some View {
         @Bindable var store = store
 
-        ZStack(alignment: .bottom) {
+        ZStack {
             GradientBackground()
                 .ignoresSafeArea()
 
-            Group {
-                switch store.selectedTab {
-                case .dashboard:
-                    NavigationStack { DashboardView() }
-                case .claims:
-                    NavigationStack { ClaimsListView(presentingFileClaim: $presentingFileClaim) }
-                case .add:
-                    EmptyView()
-                case .household:
-                    HouseholdHubView()
-                case .profile:
-                    NavigationStack { ProfileView() }
+            VStack(spacing: 0) {
+                Group {
+                    switch store.selectedTab {
+                    case .dashboard:
+                        NavigationStack { DashboardView() }
+                    case .claims:
+                        NavigationStack { ClaimsListView(presentingFileClaim: $presentingFileClaim) }
+                    case .add:
+                        EmptyView()
+                    case .household:
+                        HouseholdHubView()
+                    case .profile:
+                        NavigationStack { ProfileView() }
+                    }
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                Color.clear.frame(height: 72)
-            }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            BottomNavBar(
-                selected: $store.selectedTab,
-                onAddTapped: { presentingAdd = true }
-            )
+                BottomNavBar(
+                    selected: $store.selectedTab,
+                    onAddTapped: { presentingAdd = true }
+                )
+            }
         }
-        .ignoresSafeArea(edges: .bottom)
         .sheet(isPresented: $presentingAdd) {
             NavigationStack { AddWarrantyView() }
                 .presentationDetents([.large])
@@ -61,33 +57,26 @@ struct BottomNavBar: View {
     private let addSize: CGFloat = 56
 
     var body: some View {
-        ZStack(alignment: .top) {
-            // Tab items row
-            HStack(spacing: 0) {
-                navItem(.dashboard, symbol: "square.grid.2x2.fill",    title: "Home")
-                navItem(.claims,    symbol: "doc.text.magnifyingglass", title: "Claims")
+        HStack(spacing: 0) {
+            navItem(.dashboard, symbol: "square.grid.2x2.fill",    title: "Home")
+            navItem(.claims,    symbol: "doc.text.magnifyingglass", title: "Claims")
 
-                // Spacer for the floating button
-                Color.clear.frame(width: addSize + 16)
+            // Invisible spacer reserves width for the floating + button
+            Color.clear
+                .frame(width: addSize + 12, height: 1)
 
-                navItem(.household, symbol: "person.2.fill",           title: "Family")
-                navItem(.profile,   symbol: "person.crop.circle.fill", title: "Profile")
-            }
-            .padding(.horizontal, 8)
-            .padding(.top, 14)
-            .padding(.bottom, 34) // accounts for home indicator safe area
-            .background(
-                UnevenRoundedRectangle(
-                    topLeadingRadius: 24,
-                    bottomLeadingRadius: 0,
-                    bottomTrailingRadius: 0,
-                    topTrailingRadius: 24
-                )
-                .fill(.ultraThinMaterial)
+            navItem(.household, symbol: "person.2.fill",           title: "Family")
+            navItem(.profile,   symbol: "person.crop.circle.fill", title: "Profile")
+        }
+        .padding(.horizontal, 8)
+        .padding(.top, 12)
+        .padding(.bottom, 8)
+        .background(
+            Color.white
                 .shadow(color: .black.opacity(0.06), radius: 12, y: -4)
-            )
-
-            // Floating add button — anchored above the bar
+                .ignoresSafeArea(edges: .bottom)
+        )
+        .overlay(alignment: .top) {
             addButton
                 .offset(y: -(addSize / 2))
         }
@@ -102,10 +91,9 @@ struct BottomNavBar: View {
                 selected = tab
             }
         } label: {
-            VStack(spacing: 5) {
+            VStack(spacing: 4) {
                 Image(systemName: symbol)
                     .font(.system(size: 20, weight: isSelected ? .bold : .medium))
-                    .symbolEffect(.bounce, value: isSelected)
                 Text(title)
                     .font(.system(size: 11, weight: .medium))
             }
@@ -117,22 +105,21 @@ struct BottomNavBar: View {
 
     private var addButton: some View {
         Button(action: onAddTapped) {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [AppColors.brandBlue, Color(red: 0.02, green: 0.40, blue: 0.90)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
+            Circle()
+                .fill(
+                    LinearGradient(
+                        colors: [AppColors.brandBlue, Color(red: 0.02, green: 0.40, blue: 0.90)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
                     )
-                    .frame(width: addSize, height: addSize)
-                    .shadow(color: AppColors.brandBlue.opacity(0.30), radius: 10, y: 6)
-
-                Image(systemName: "plus")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundStyle(.white)
-            }
+                )
+                .frame(width: addSize, height: addSize)
+                .shadow(color: AppColors.brandBlue.opacity(0.30), radius: 10, y: 4)
+                .overlay(
+                    Image(systemName: "plus")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(.white)
+                )
         }
         .buttonStyle(.plain)
     }
