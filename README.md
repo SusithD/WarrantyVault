@@ -1,0 +1,78 @@
+# WarrantyVault — iOS App Boilerplate
+
+SwiftUI boilerplate for the WarrantyVault app. This package contains the **first 5 entry-flow screens**, wired together with a lightweight coordinator, plus a reusable design-system layer that matches the finalized Figma designs.
+
+## What's included
+
+### Screens (5)
+1. **Splash** (`Features/Splash/SplashView.swift`) — 1.8s branded splash with scale-in vault badge, auto-advances to onboarding.
+2. **Onboarding 1 — Store** (`Features/Onboarding/*`) — "Your warranties, always at hand."
+3. **Onboarding 2 — Remind** — "Never miss an expiry again."
+4. **Onboarding 3 — Protect** — "Family-safe. Biometrically locked."
+5. **Authentication** (`Features/Authentication/AuthenticationView.swift`) — Face ID / Touch ID with passcode fallback (uses `LocalAuthentication`).
+
+### Design system (`DesignSystem/`)
+- `AppColors.swift` — brand blue `#0A84FF`, background gradient, text tokens, status colors.
+- `AppTypography.swift` — SF Pro type scale + `.overlineStyle()` modifier for ALL-CAPS labels.
+- `GradientBackground.swift` — screen-wide vertical gradient.
+- `PrimaryButton.swift` — 52pt pill CTA + `SecondaryTextButton`.
+- `PageIndicator.swift` — capsule dash indicator that widens the current page.
+- `GlassCard.swift` — white glassmorphic card with soft shadow.
+
+### Navigation
+- `App/AppCoordinator.swift` — `@Observable` coordinator exposing `stage: AppFlowStage` (`.splash` → `.onboarding` → `.authentication` → `.mainApp`) with transitions.
+- `WarrantyVaultApp.swift` — root `RootView` switches on stage with a cross-fade.
+
+## Requirements
+- **Xcode 15** or newer
+- **iOS 17.0** deployment target
+- **Swift 5.0**
+
+## How to open
+1. Double-click `WarrantyVault.xcodeproj` (or open it from Xcode → *File → Open*).
+2. Select the **WarrantyVault** scheme.
+3. Choose an iOS 17+ simulator (e.g. iPhone 15).
+4. Press **⌘R** to build and run.
+
+## Face ID note
+`Info.plist` values are set via build settings:
+- `INFOPLIST_KEY_NSFaceIDUsageDescription = "Authenticate to securely access your warranty vault."`
+
+The authentication screen calls `LAContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, ...)`. On the simulator, use **Features → Face ID → Matching Face** to test the success path.
+
+## Folder layout
+```
+WarrantyVault/
+├── App/
+│   └── AppCoordinator.swift
+├── DesignSystem/
+│   ├── AppColors.swift
+│   ├── AppTypography.swift
+│   ├── GradientBackground.swift
+│   ├── PrimaryButton.swift
+│   ├── PageIndicator.swift
+│   └── GlassCard.swift
+├── Features/
+│   ├── Splash/SplashView.swift
+│   ├── Onboarding/
+│   │   ├── OnboardingData.swift
+│   │   ├── OnboardingIllustrationView.swift
+│   │   ├── OnboardingPageView.swift
+│   │   └── OnboardingContainerView.swift
+│   └── Authentication/
+│       ├── AuthenticationView.swift
+│       └── MainAppPlaceholderView.swift
+├── Assets.xcassets/  (AppIcon + AccentColor #0A84FF)
+├── Preview Content/
+└── WarrantyVaultApp.swift
+```
+
+## Next steps
+The `.mainApp` stage currently shows `MainAppPlaceholderView`. Replace it with the Dashboard screen to continue implementing the flow:
+- Dashboard (Warranty list)
+- Warranty Detail
+- Add / Edit Warranty
+- Claim — File a Claim / Status / Chat
+- Household — Create / Members / Activity
+
+All screens should reuse the `DesignSystem/` components to stay visually consistent with the Figma source.
